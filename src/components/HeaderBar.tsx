@@ -4,8 +4,11 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Close from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 import { DRAWER_WIDTH } from "../global/Constants";
+import Badge from "@mui/material/Badge";
 
 interface HeaderBarProps extends MuiAppBarProps {
   isOpen: boolean;
@@ -36,7 +39,7 @@ const HeaderBar = ({ isOpen, toggleDrawer }: HeaderBarProps) => {
       isOpen={isOpen}
       toggleDrawer={toggleDrawer}
     >
-      <Toolbar>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -46,6 +49,20 @@ const HeaderBar = ({ isOpen, toggleDrawer }: HeaderBarProps) => {
         >
           {isOpen ? <Close /> : <MenuIcon />}
         </IconButton>
+        <div>
+          <IconButton
+            size="large"
+            aria-label="show 17 new notifications"
+            color="inherit"
+          >
+            <Badge badgeContent={17} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <IconButton size="large" color="inherit">
+            <AccountCircle />
+          </IconButton>
+        </div>
       </Toolbar>
     </StyledHeaderBar>
   );
