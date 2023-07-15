@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { styled } from "@mui/material/styles";
 
-const drawerWidth = 240;
+import { DRAWER_WIDTH } from "../global/Constants";
 
 const StyledMainContent = styled("main", {
   shouldForwardProp: (prop) => prop !== "isOpen",
@@ -15,7 +15,7 @@ const StyledMainContent = styled("main", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginLeft: `-${drawerWidth}px`,
+  marginLeft: `-${DRAWER_WIDTH}px`,
   ...(isOpen && {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,

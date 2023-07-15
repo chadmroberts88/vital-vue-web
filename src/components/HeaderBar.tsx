@@ -1,12 +1,11 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import Close from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const drawerWidth = 240;
+import { DRAWER_WIDTH } from "../global/Constants";
 
 interface HeaderBarProps extends MuiAppBarProps {
   isOpen: boolean;
@@ -21,8 +20,8 @@ const StyledHeaderBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(isOpen && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
+    marginLeft: `${DRAWER_WIDTH}px`,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -43,13 +42,10 @@ const HeaderBar = ({ isOpen, toggleDrawer }: HeaderBarProps) => {
           aria-label="open drawer"
           onClick={toggleDrawer}
           edge="start"
-          sx={{ mr: 2, ...(isOpen && { display: "none" }) }}
+          sx={{ mr: 2 }}
         >
-          <MenuIcon />
+          {isOpen ? <Close /> : <MenuIcon />}
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          Persistent drawer
-        </Typography>
       </Toolbar>
     </StyledHeaderBar>
   );

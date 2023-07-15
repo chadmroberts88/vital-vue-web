@@ -23,7 +23,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <NavigationDrawer isOpen={isDrawerOpen} toggleDrawer={handleToggleDrawer}>
+      <NavigationDrawer isOpen={isDrawerOpen}>
         <HeaderBar isOpen={isDrawerOpen} toggleDrawer={handleToggleDrawer} />
         <MainContent isOpen={isDrawerOpen}>
           <p>Some content...</p>

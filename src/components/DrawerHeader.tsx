@@ -1,5 +1,5 @@
-import React, { PropsWithChildren } from "react";
 import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 
 const StyledDrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -7,11 +7,15 @@ const StyledDrawerHeader = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
+  justifyContent: "flex-start",
 }));
 
-const DrawerHeader = ({ children }: PropsWithChildren): JSX.Element => {
-  return <StyledDrawerHeader>{children}</StyledDrawerHeader>;
+const DrawerHeader = (): JSX.Element => {
+  return (
+    <StyledDrawerHeader>
+      <Typography variant="h5">VitalVue</Typography>
+    </StyledDrawerHeader>
+  );
 };
 
 export default DrawerHeader;

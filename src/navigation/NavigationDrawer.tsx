@@ -1,43 +1,35 @@
-import React, { PropsWithChildren } from "react";
-import { useTheme } from "@mui/material/styles";
+import { PropsWithChildren } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import PersonIcon from "@mui/icons-material/Person";
+import HotelIcon from "@mui/icons-material/Hotel";
+import ScienceIcon from "@mui/icons-material/Science";
+import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
+import MedicationIcon from "@mui/icons-material/Medication";
 
+import { DRAWER_WIDTH } from "../global/Constants";
 import DrawerHeader from "../components/DrawerHeader";
-
-const drawerWidth = 240;
+import DrawerListItem from "../components/DrawerListItem";
+import { Button, Stack } from "@mui/material";
 
 type NavigationDrawerProps = PropsWithChildren & {
   isOpen: boolean;
-  toggleDrawer: () => void;
 };
 
 const NavigationDrawer = ({
   children,
   isOpen,
-  toggleDrawer,
 }: NavigationDrawerProps): JSX.Element => {
-  const theme = useTheme();
-
   return (
     <Box sx={{ display: "flex" }}>
       <Drawer
         sx={{
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
+            width: DRAWER_WIDTH,
             boxSizing: "border-box",
           },
         }}
@@ -45,43 +37,25 @@ const NavigationDrawer = ({
         anchor="left"
         open={isOpen}
       >
-        <DrawerHeader>
-          <IconButton onClick={toggleDrawer}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
+        <DrawerHeader />
         <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
 
+        <Stack flex={1} direction="column" justifyContent="space-between">
+          <List sx={{ p: 0 }}>
+            <DrawerListItem text="Staff" icon={<PersonIcon />} />
+            <DrawerListItem text="Patients" icon={<HotelIcon />} />
+            <DrawerListItem text="Labs" icon={<ScienceIcon />} />
+            <DrawerListItem
+              text="Procedures"
+              icon={<MedicalInformationIcon />}
+            />
+            <DrawerListItem text="Medications" icon={<MedicationIcon />} />
+          </List>
+          <Button sx={{ m: 2 }} variant="outlined">
+            Log Out
+          </Button>
+        </Stack>
+      </Drawer>
       {children}
     </Box>
   );
