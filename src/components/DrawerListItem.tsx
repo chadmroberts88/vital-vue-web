@@ -15,7 +15,7 @@ const DrawerListItem = ({
   icon,
 }: DrawerListItemProps): JSX.Element => {
   return (
-    <ListItem disablePadding onClick={() => console.log(text)} sx={{ mb: 2 }}>
+    <ListItem disablePadding onClick={() => console.log(text)} sx={{ mb: 1 }}>
       <ListItemButton>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={text} />

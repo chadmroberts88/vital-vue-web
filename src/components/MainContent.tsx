@@ -8,9 +8,12 @@ const StyledMainContent = styled("main", {
 })<{
   isOpen?: boolean;
 }>(({ theme, isOpen }) => ({
+  flex: 1,
   flexGrow: 1,
-  marginTop: 60,
-  padding: theme.spacing(3),
+  display: "flex",
+  marginTop: "60px",
+  flexDirection: "column",
+  height: "calc(100% - 60px)",
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
