@@ -1,8 +1,6 @@
 import { PropsWithChildren } from "react";
 import { styled } from "@mui/material/styles";
 
-import { DRAWER_WIDTH } from "../global/Constants";
-
 const StyledMainContent = styled("main", {
   shouldForwardProp: (prop) => prop !== "isOpen",
 })<{
@@ -11,14 +9,12 @@ const StyledMainContent = styled("main", {
   flex: 1,
   flexGrow: 1,
   display: "flex",
-  marginTop: "60px",
   flexDirection: "column",
-  height: "calc(100% - 60px)",
+  height: "100%",
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginLeft: `-${DRAWER_WIDTH}px`,
   ...(isOpen && {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,

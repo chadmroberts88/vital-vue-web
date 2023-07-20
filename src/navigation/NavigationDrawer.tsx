@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
-import Button from "@mui/material/Button";
+import { CSSObject, Theme, styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
+import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import {
   Person,
@@ -10,6 +10,7 @@ import {
   Science,
   MedicalInformation,
   Medication,
+  Logout,
 } from "@mui/icons-material";
 
 import { DRAWER_WIDTH } from "../global/Constants";
@@ -18,11 +19,52 @@ import DrawerListItem from "../components/DrawerListItem";
 
 type NavigationDrawerProps = PropsWithChildren & {
   isOpen: boolean;
+  toggleDrawer: () => void;
 };
+
+const openedMixin = (theme: Theme): CSSObject => ({
+  width: DRAWER_WIDTH,
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: "hidden",
+});
+
+const closedMixin = (theme: Theme): CSSObject => ({
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: "hidden",
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up("sm")]: {
+    width: `calc(${theme.spacing(7)} + 1px)`,
+  },
+});
+
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) =>
+    !["isOpen", "toggleDrawer"].includes(prop.toString()),
+})<NavigationDrawerProps>(({ theme, isOpen }) => ({
+  width: DRAWER_WIDTH,
+  flexShrink: 0,
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
+  ...(isOpen && {
+    ...openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
+  }),
+  ...(!isOpen && {
+    ...closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
+  }),
+}));
 
 const NavigationDrawer = ({
   children,
   isOpen,
+  toggleDrawer,
 }: NavigationDrawerProps): JSX.Element => {
   return (
     <Box
@@ -31,21 +73,8 @@ const NavigationDrawer = ({
         display: "flex",
       }}
     >
-      <Drawer
-        sx={{
-          width: DRAWER_WIDTH,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: DRAWER_WIDTH,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={isOpen}
-      >
-        <DrawerHeader />
-
+      <Drawer variant="permanent" isOpen={isOpen} toggleDrawer={toggleDrawer}>
+        <DrawerHeader isOpen={isOpen} toggleDrawer={toggleDrawer} />
         <Stack flex={1} direction="column" justifyContent="space-between">
           <List sx={{ p: 0 }}>
             <DrawerListItem text="Staff" icon={<Person />} />
@@ -54,9 +83,7 @@ const NavigationDrawer = ({
             <DrawerListItem text="Procedures" icon={<MedicalInformation />} />
             <DrawerListItem text="Medications" icon={<Medication />} />
           </List>
-          <Button sx={{ m: 2 }} variant="outlined">
-            Log Out
-          </Button>
+          <DrawerListItem text="Log Out" icon={<Logout />} />
         </Stack>
       </Drawer>
       {children}

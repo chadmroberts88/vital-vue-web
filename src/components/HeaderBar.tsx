@@ -1,28 +1,30 @@
 import { styled } from "@mui/material/styles";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import { AccountCircle, Notifications, West, East } from "@mui/icons-material";
-import Toolbar from "@mui/material/Toolbar";
+import { AccountCircle, Notifications } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
-
-import { DRAWER_WIDTH } from "../global/Constants";
 import Badge from "@mui/material/Badge";
+import { Typography } from "@mui/material";
+import { HEADER_HEIGHT } from "../global/Constants";
 
-interface HeaderBarProps extends MuiAppBarProps {
+interface HeaderBarProps {
   isOpen: boolean;
   toggleDrawer: () => void;
 }
 
-const StyledHeaderBar = styled(MuiAppBar, {
+const StyledHeaderBar = styled("div", {
   shouldForwardProp: (prop) =>
     !["isOpen", "toggleDrawer"].includes(prop.toString()),
 })<HeaderBarProps>(({ theme, isOpen }) => ({
+  minHeight: HEADER_HEIGHT,
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  paddingLeft: "18px",
+  paddingRight: "18px",
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(isOpen && {
-    width: `calc(100% - ${DRAWER_WIDTH}px)`,
-    marginLeft: `${DRAWER_WIDTH}px`,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -32,36 +34,22 @@ const StyledHeaderBar = styled(MuiAppBar, {
 
 const HeaderBar = ({ isOpen, toggleDrawer }: HeaderBarProps) => {
   return (
-    <StyledHeaderBar
-      position="fixed"
-      isOpen={isOpen}
-      toggleDrawer={toggleDrawer}
-    >
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+    <StyledHeaderBar isOpen={isOpen} toggleDrawer={toggleDrawer}>
+      <Typography variant="h5">VitalVue</Typography>
+      <div>
         <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
           color="inherit"
-          aria-label="open drawer"
-          onClick={toggleDrawer}
-          edge="start"
-          sx={{ mr: 2 }}
         >
-          {isOpen ? <West /> : <East />}
+          <Badge badgeContent={17} color="error">
+            <Notifications />
+          </Badge>
         </IconButton>
-        <div>
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
-            <Badge badgeContent={17} color="error">
-              <Notifications />
-            </Badge>
-          </IconButton>
-          <IconButton size="large" color="inherit">
-            <AccountCircle />
-          </IconButton>
-        </div>
-      </Toolbar>
+        <IconButton size="large" color="inherit">
+          <AccountCircle />
+        </IconButton>
+      </div>
     </StyledHeaderBar>
   );
 };

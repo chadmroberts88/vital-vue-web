@@ -1,19 +1,28 @@
+import { IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
+import { West, East } from "@mui/icons-material";
+import { HEADER_HEIGHT } from "../global/Constants";
+
+interface DrawerHeaderProps {
+  isOpen: boolean;
+  toggleDrawer: () => void;
+}
 
 const StyledDrawerHeader = styled("div")(({ theme }) => ({
+  minHeight: HEADER_HEIGHT,
   display: "flex",
   alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-start",
 }));
 
-const DrawerHeader = (): JSX.Element => {
+const DrawerHeader = ({
+  isOpen,
+  toggleDrawer,
+}: DrawerHeaderProps): JSX.Element => {
   return (
     <StyledDrawerHeader>
-      <Typography variant="h5">VitalVue</Typography>
+      <IconButton color="inherit" onClick={toggleDrawer} sx={{ ml: "9px" }}>
+        {isOpen ? <West /> : <East />}
+      </IconButton>
     </StyledDrawerHeader>
   );
 };
