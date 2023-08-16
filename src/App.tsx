@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import HeaderBar from "./components/HeaderBar";
 import NavigationDrawer from "./navigation/NavigationDrawer";
 import MainContent from "./components/MainContent";
-import PatientListPage from "./components/PatientListPage";
+import PatientsTable from "./components/PatientsTable";
 
 const darkTheme = createTheme({
   palette: {
@@ -27,7 +27,7 @@ function App() {
       <NavigationDrawer isOpen={isDrawerOpen} toggleDrawer={handleToggleDrawer}>
         <MainContent isOpen={isDrawerOpen}>
           <HeaderBar isOpen={isDrawerOpen} toggleDrawer={handleToggleDrawer} />
-          <PatientListPage />
+          <PatientsTable />
         </MainContent>
       </NavigationDrawer>
     </ThemeProvider>
