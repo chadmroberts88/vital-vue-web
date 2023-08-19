@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import { AccountCircle, Notifications } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
-import { Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import { HEADER_HEIGHT } from "../global/Constants";
 
 interface HeaderBarProps {
@@ -35,7 +35,7 @@ const StyledHeaderBar = styled("div", {
 const HeaderBar = ({ isOpen, toggleDrawer }: HeaderBarProps) => {
   return (
     <StyledHeaderBar isOpen={isOpen} toggleDrawer={toggleDrawer}>
-      <Typography variant="h5">VitalVue</Typography>
+      <Button onClick={toggleDrawer}>Open</Button>
       <div>
         <IconButton
           size="large"

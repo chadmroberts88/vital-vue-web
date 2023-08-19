@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { PropsWithChildren } from "react";
 
 const columns: GridColDef[] = [
   {
@@ -23,28 +24,28 @@ const columns: GridColDef[] = [
     headerName: "Bloodpressure",
     type: "number",
     align: "right",
-    width: 150,
+    flex: 1,
   },
   {
     field: "specificOxygen",
     headerName: "SpO2 (%)",
     type: "number",
     align: "right",
-    width: 150,
+    flex: 1,
   },
   {
     field: "pulse",
     headerName: "Pulse (/min)",
     type: "number",
     align: "right",
-    width: 150,
+    flex: 1,
   },
   {
     field: "respirations",
     headerName: "Resp. (/min)",
     type: "number",
     align: "right",
-    width: 150,
+    flex: 1,
   },
 ];
 
@@ -71,9 +72,18 @@ const rows = [
   },
 ];
 
-export default function DataGridDemo() {
+type PatientsTableProps = PropsWithChildren & {
+  drawerOpen: boolean;
+};
+
+const PatientsTable = ({ drawerOpen }: PatientsTableProps) => {
   return (
-    <Box sx={{ height: "100%", width: "100%" }}>
+    <Box
+      sx={{
+        height: "100%",
+        width: "100%",
+      }}
+    >
       <DataGrid
         sx={{ width: "100%" }}
         rows={rows}
@@ -95,4 +105,6 @@ export default function DataGridDemo() {
       />
     </Box>
   );
-}
+};
+
+export default PatientsTable;

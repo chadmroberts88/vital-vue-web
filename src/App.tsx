@@ -27,7 +27,7 @@ function App() {
       <NavigationDrawer isOpen={isDrawerOpen} toggleDrawer={handleToggleDrawer}>
         <MainContent isOpen={isDrawerOpen}>
           <HeaderBar isOpen={isDrawerOpen} toggleDrawer={handleToggleDrawer} />
-          <PatientsTable />
+          <PatientsTable drawerOpen={isDrawerOpen} />
         </MainContent>
       </NavigationDrawer>
     </ThemeProvider>

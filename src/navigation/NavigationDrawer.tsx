@@ -70,10 +70,9 @@ const NavigationDrawer = ({
     <Box
       style={{
         height: "100%",
-        display: "flex",
       }}
     >
-      <Drawer variant="permanent" isOpen={isOpen} toggleDrawer={toggleDrawer}>
+      <MuiDrawer anchor="left" open={isOpen} onClose={toggleDrawer}>
         <DrawerHeader isOpen={isOpen} toggleDrawer={toggleDrawer} />
         <Stack flex={1} direction="column" justifyContent="space-between">
           <List sx={{ p: 0 }}>
@@ -85,7 +84,7 @@ const NavigationDrawer = ({
           </List>
           <DrawerListItem text="Log Out" icon={<Logout />} />
         </Stack>
-      </Drawer>
+      </MuiDrawer>
       {children}
     </Box>
   );
