@@ -72,7 +72,12 @@ const NavigationDrawer = ({
         height: "100%",
       }}
     >
-      <MuiDrawer anchor="left" open={isOpen} onClose={toggleDrawer}>
+      <MuiDrawer
+        anchor="left"
+        open={isOpen}
+        onClose={toggleDrawer}
+        PaperProps={{ sx: { width: "200px" } }}
+      >
         <DrawerHeader isOpen={isOpen} toggleDrawer={toggleDrawer} />
         <Stack flex={1} direction="column" justifyContent="space-between">
           <List sx={{ p: 0 }}>
