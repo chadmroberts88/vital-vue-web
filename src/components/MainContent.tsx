@@ -6,22 +6,11 @@ const StyledMainContent = styled("main", {
 })<{
   isOpen?: boolean;
 }>(({ theme, isOpen }) => ({
-  flex: 1,
-  flexGrow: 1,
-  display: "flex",
-  flexDirection: "column",
-  height: "100%",
-  transition: theme.transitions.create("margin", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(isOpen && {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  }),
+  // flex: 1,
+  // flexGrow: 1,
+  // display: "flex",
+  // flexDirection: "column",
+  backgroundColor: "aqua",
 }));
 
 type MainContentProps = PropsWithChildren & {

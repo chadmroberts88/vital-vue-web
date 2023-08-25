@@ -1,4 +1,3 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { PropsWithChildren } from "react";
@@ -54,7 +53,7 @@ const rows = [
     id: "1234568",
     firstName: "Chad",
     lastName: "Roberts",
-    healthcareNumber: "1234567890",
+    healthcareNumber: "1",
     bloodPressure: `${120}/${80}`,
     specificOxygen: 97,
     pulse: 80,
@@ -64,7 +63,107 @@ const rows = [
     id: "87654321",
     firstName: "Chad",
     lastName: "Roberts",
-    healthcareNumber: "1234567890",
+    healthcareNumber: "2",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654320",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "3",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654319",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "14",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654318",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "125",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654317",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "17",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654316",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "09",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654315",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "1230",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654314",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "17890",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654313",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "1234x7890",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "87654",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "1234x7890",
+    bloodPressure: `${120}/${80}`,
+    specificOxygen: 97,
+    pulse: 80,
+    respirations: 42,
+  },
+  {
+    id: "854313",
+    firstName: "Chad",
+    lastName: "Roberts",
+    healthcareNumber: "1234x7890",
     bloodPressure: `${120}/${80}`,
     specificOxygen: 97,
     pulse: 80,
@@ -78,32 +177,27 @@ type PatientsTableProps = PropsWithChildren & {
 
 const PatientsTable = ({ drawerOpen }: PatientsTableProps) => {
   return (
-    <Box
+    <DataGrid
       sx={{
-        height: "100%",
-        width: "100%",
+        boxShadow: 3,
       }}
-    >
-      <DataGrid
-        sx={{ width: "100%" }}
-        rows={rows}
-        columns={columns}
-        density="compact"
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 10,
-            },
+      rows={rows}
+      columns={columns}
+      density="compact"
+      initialState={{
+        pagination: {
+          paginationModel: {
+            pageSize: 5,
           },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-        getRowClassName={(params) =>
-          params.indexRelativeToCurrentPage % 2 === 0 ? "Mui-even" : "Mui-odd"
-        }
-      />
-    </Box>
+        },
+      }}
+      pageSizeOptions={[5, 10, 25]}
+      checkboxSelection
+      disableRowSelectionOnClick
+      getRowClassName={(params) =>
+        params.indexRelativeToCurrentPage % 2 === 0 ? "Mui-even" : "Mui-odd"
+      }
+    />
   );
 };
 
