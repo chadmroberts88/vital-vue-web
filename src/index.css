@@ -21,6 +21,45 @@ code {
     monospace;
 }
 
+/* Allow fixed height for Ant Design table. */
+/* Must set height on component to take effect. */
+
+.ant-table-wrapper {
+  .ant-spin-nested-loading {
+    height: 100%;
+
+    .ant-spin-container {
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+
+      .ant-table {
+        flex: auto;
+        overflow: hidden;
+
+        .ant-table-container {
+          height: 100%;
+          display: flex;
+          flex-flow: column nowrap;
+
+          .ant-table-header {
+            flex: none;
+          }
+
+          .ant-table-body {
+            flex: auto;
+            overflow: scroll;
+          }
+        }
+      }
+
+      .ant-table-pagination {
+        flex: none;
+      }
+    }
+  }
+}
+
 .MuiDataGrid-row.Mui-odd {
   background-color: aliceblue;
 }
