@@ -1,56 +1,63 @@
-import Box from "@mui/material/Box";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { PropsWithChildren } from "react";
+import { Table } from "antd";
+import type { TablePaginationConfig, TableProps } from "antd";
+interface DataType {
+  id: string;
+  key: string;
+  firstName: string;
+  lastName: string;
+  healthcareNumber: string;
+  bloodPressure: string;
+  specificOxygen: number;
+  pulse: number;
+  respirations: number;
+}
 
-const columns: GridColDef[] = [
+const columns: TableProps<DataType>["columns"] = [
   {
-    field: "firstName",
-    headerName: "First name",
-    flex: 1,
+    title: "First name",
+    key: "firstName",
+    dataIndex: "firstName",
   },
   {
-    field: "lastName",
-    headerName: "Last name",
-    flex: 1,
+    title: "Last name",
+    key: "lastName",
+    dataIndex: "lastName",
   },
   {
-    field: "healthcareNumber",
-    headerName: "Healthcare #",
-    flex: 1,
+    title: "Healthcare #",
+    key: "healthcareNumber",
+    dataIndex: "healthcareNumber",
   },
   {
-    field: "bloodPressure",
-    headerName: "Bloodpressure",
-    type: "number",
+    title: "Blood Pressure",
+    key: "bloodPressure",
+    dataIndex: "bloodPressure",
     align: "right",
-    flex: 1,
   },
   {
-    field: "specificOxygen",
-    headerName: "SpO2 (%)",
-    type: "number",
+    title: "SpO2 (%)",
+    key: "specificOxygen",
+    dataIndex: "specificOxygen",
     align: "right",
-    flex: 1,
   },
   {
-    field: "pulse",
-    headerName: "Pulse (/min)",
-    type: "number",
+    title: "Pulse (/min)",
+    key: "pulse",
+    dataIndex: "pulse",
     align: "right",
-    flex: 1,
   },
   {
-    field: "respirations",
-    headerName: "Resp. (/min)",
-    type: "number",
+    title: "Resp. (/min)",
+    key: "respirations",
+    dataIndex: "respirations",
     align: "right",
-    flex: 1,
   },
 ];
 
-const rows = [
+const data: DataType[] = [
   {
     id: "1234568",
+    key: "01",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "1",
@@ -61,6 +68,7 @@ const rows = [
   },
   {
     id: "87654321",
+    key: "02",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "2",
@@ -71,6 +79,7 @@ const rows = [
   },
   {
     id: "87654320",
+    key: "03",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "3",
@@ -81,6 +90,7 @@ const rows = [
   },
   {
     id: "87654319",
+    key: "04",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "14",
@@ -91,6 +101,7 @@ const rows = [
   },
   {
     id: "87654318",
+    key: "05",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "125",
@@ -101,6 +112,7 @@ const rows = [
   },
   {
     id: "87654317",
+    key: "06",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "17",
@@ -111,6 +123,7 @@ const rows = [
   },
   {
     id: "87654316",
+    key: "07",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "09",
@@ -121,6 +134,7 @@ const rows = [
   },
   {
     id: "87654315",
+    key: "08",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "1230",
@@ -131,6 +145,7 @@ const rows = [
   },
   {
     id: "87654314",
+    key: "09",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "17890",
@@ -141,6 +156,7 @@ const rows = [
   },
   {
     id: "87654313",
+    key: "10",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "1234x7890",
@@ -151,6 +167,7 @@ const rows = [
   },
   {
     id: "87654",
+    key: "11",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "1234x7890",
@@ -161,6 +178,7 @@ const rows = [
   },
   {
     id: "854313",
+    key: "12",
     firstName: "Chad",
     lastName: "Roberts",
     healthcareNumber: "1234x7890",
@@ -171,32 +189,23 @@ const rows = [
   },
 ];
 
-type PatientsTableProps = PropsWithChildren & {
-  drawerOpen: boolean;
-};
+const PatientsTable = () => {
+  const paginationConfig: TablePaginationConfig = {
+    pageSize: 5,
+  };
 
-const PatientsTable = ({ drawerOpen }: PatientsTableProps) => {
   return (
-    <DataGrid
-      sx={{
-        boxShadow: 3,
+    <Table
+      style={{
+        width: "100%",
+        height: "394px",
+        borderRadius: "10px",
+        boxShadow: "0px 10px 10px 5px #a9a9a9a9",
+        backgroundColor: "#FAFAFA",
       }}
-      rows={rows}
+      pagination={paginationConfig}
       columns={columns}
-      density="compact"
-      initialState={{
-        pagination: {
-          paginationModel: {
-            pageSize: 5,
-          },
-        },
-      }}
-      pageSizeOptions={[5, 10, 25]}
-      checkboxSelection
-      disableRowSelectionOnClick
-      getRowClassName={(params) =>
-        params.indexRelativeToCurrentPage % 2 === 0 ? "Mui-even" : "Mui-odd"
-      }
+      dataSource={data}
     />
   );
 };
