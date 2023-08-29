@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import PageLayout from "./components/PageLayout";
+import DashboardPage from "./components/DashboardPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -13,15 +13,11 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-
-  const handleToggleDrawer = (): void => {
-    setIsDrawerOpen(!isDrawerOpen);
-  };
-
   return (
     <ThemeProvider theme={darkTheme}>
-      <PageLayout></PageLayout>
+      <PageLayout>
+        <DashboardPage />
+      </PageLayout>
     </ThemeProvider>
   );
 }

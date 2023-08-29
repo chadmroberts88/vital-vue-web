@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -6,16 +6,13 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, Row, Col, theme } from "antd";
-import PatientsTable from "./PatientsTable";
+import { Layout, Menu, Button } from "antd";
+import Sider from "antd/es/layout/Sider";
 
-const { Sider, Content } = Layout;
+type PageLayoutProps = PropsWithChildren & {};
 
-const App: React.FC = () => {
+const PageLayout = ({ children }: PageLayoutProps) => {
   const [collapsed, setCollapsed] = useState(true);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -62,41 +59,9 @@ const App: React.FC = () => {
           ]}
         />
       </Sider>
-      <Layout>
-        <Content style={{ margin: "16px" }}>
-          <Row gutter={[16, 16]}>
-            <Col span={12}>
-              <div
-                style={{
-                  padding: "16px",
-                  background: colorBgContainer,
-                  borderRadius: borderRadiusLG,
-                  height: "400px",
-                }}
-              >
-                Bill is a cat.
-              </div>
-            </Col>
-            <Col span={12}>
-              <div
-                style={{
-                  padding: "16px",
-                  background: colorBgContainer,
-                  borderRadius: borderRadiusLG,
-                  height: "400px",
-                }}
-              >
-                Bill is a cat.
-              </div>
-            </Col>
-            <Col span={24}>
-              <PatientsTable />
-            </Col>
-          </Row>
-        </Content>
-      </Layout>
+      <Layout>{children}</Layout>
     </Layout>
   );
 };
 
-export default App;
+export default PageLayout;
