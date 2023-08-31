@@ -15,21 +15,19 @@ const PageLayout = ({ children }: PageLayoutProps) => {
   const [collapsed, setCollapsed] = useState(true);
 
   return (
-    <Layout
-      style={{
-        minHeight: "100vh",
-        position: "absolute",
-        width: "100%",
-        left: 0,
-        top: 0,
-        bottom: 0,
-      }}
-    >
+    <Layout>
       <Sider
         trigger={null}
         collapsible
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
+        style={{
+          height: "100vh",
+          position: "sticky",
+          top: 0,
+          left: 0,
+          bottom: 0,
+        }}
       >
         <div
           style={{
@@ -84,30 +82,47 @@ const PageLayout = ({ children }: PageLayoutProps) => {
             }}
           />
         </div>
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
-        />
+        <div
+          style={{
+            overflow: "auto",
+            height: "calc(100% - 80px)",
+          }}
+        >
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={["1"]}
+            items={[
+              {
+                key: "1",
+                icon: <UserOutlined />,
+                label: "nav 1",
+              },
+              {
+                key: "2",
+                icon: <VideoCameraOutlined />,
+                label: "nav 2",
+              },
+              {
+                key: "3",
+                icon: <UploadOutlined />,
+                label: "nav 3",
+              },
+              {
+                key: "4",
+                icon: <UploadOutlined />,
+                label: "nav 4",
+              },
+              {
+                key: "5",
+                icon: <UploadOutlined />,
+                label: "nav 5",
+              },
+            ]}
+          />
+        </div>
       </Sider>
-      <Layout style={{ overflow: "auto" }}>{children}</Layout>
+      <Layout>{children}</Layout>
     </Layout>
   );
 };
