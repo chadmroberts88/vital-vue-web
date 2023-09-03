@@ -1,10 +1,19 @@
 import { PropsWithChildren, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBed,
+  faClipboard,
+  faFlask,
+  faUserDoctor,
+  faVial,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
   CaretLeftFilled,
   CaretRightFilled,
+  DashboardOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button } from "antd";
 import Sider from "antd/es/layout/Sider";
@@ -95,28 +104,28 @@ const PageLayout = ({ children }: PageLayoutProps) => {
             items={[
               {
                 key: "1",
-                icon: <UserOutlined />,
-                label: "nav 1",
+                icon: <DashboardOutlined />,
+                label: "Dashboard",
               },
               {
                 key: "2",
-                icon: <VideoCameraOutlined />,
-                label: "nav 2",
+                icon: <FontAwesomeIcon icon={faBed} />,
+                label: "Patients",
               },
               {
                 key: "3",
-                icon: <UploadOutlined />,
-                label: "nav 3",
+                icon: <FontAwesomeIcon icon={faUserDoctor} />,
+                label: "Staff",
               },
               {
                 key: "4",
-                icon: <UploadOutlined />,
-                label: "nav 4",
+                icon: <FontAwesomeIcon icon={faClipboard} />,
+                label: "Orders",
               },
               {
                 key: "5",
-                icon: <UploadOutlined />,
-                label: "nav 5",
+                icon: <FontAwesomeIcon icon={faFlask} />,
+                label: "Tests",
               },
             ]}
           />
