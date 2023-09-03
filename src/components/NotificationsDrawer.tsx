@@ -1,12 +1,12 @@
 import { Drawer } from "antd";
 import { PropsWithChildren } from "react";
 
-type NotificationDrawerProps = PropsWithChildren & {
+type NotificationsDrawerProps = PropsWithChildren & {
   onClose: () => void;
   open: boolean;
 };
 
-const NotificationDrawer = ({ onClose, open }: NotificationDrawerProps) => {
+const NotificationsDrawer = ({ onClose, open }: NotificationsDrawerProps) => {
   return (
     <Drawer title="Basic Drawer" onClose={onClose} open={open}>
       <p>Some contents...</p>
@@ -16,4 +16,4 @@ const NotificationDrawer = ({ onClose, open }: NotificationDrawerProps) => {
   );
 };
 
-export default NotificationDrawer;
+export default NotificationsDrawer;
