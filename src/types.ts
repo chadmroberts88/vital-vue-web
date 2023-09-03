@@ -1,3 +1,5 @@
+export type NotificationType = "critical" | "warning" | "info";
+
 export interface BloodPressure {
   systolic: number;
   diastolic: number;
