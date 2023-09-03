@@ -58,6 +58,11 @@ code {
     min-width 0.2s ease-in-out !important;
 }
 
+.ant-drawer-header,
+.ant-drawer-body {
+  padding: 16px !important;
+}
+
 .pulsate {
   animation: shadowPulse 1s infinite linear;
 }
